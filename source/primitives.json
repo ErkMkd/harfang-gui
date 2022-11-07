@@ -1,0 +1,205 @@
+{
+    "box":{
+        "background_color":{
+            "type": "RGB24_APercent",
+            "value": ["#555555", 100]
+            },
+        "border_color":{
+            "type": "RGB24_APercent",
+            "value": ["#aaaaaa", 100]
+            },
+        "border_thickness":{
+            "type": "float",
+            "value": 1
+            }
+        },
+    
+    "filled_box":{
+        "background_color":{
+            "type": "RGB24_APercent",
+            "value": ["#555555", 100]
+            }
+        },
+    
+    "box_borders":{
+        "border_color":{
+            "type": "RGB24_APercent",
+            "value": ["#aaaaaa", 100]
+            },
+        "border_thickness":{
+            "type": "float",
+            "value": 1
+            }
+        },
+    
+    "rounded_box":{
+        "background_color":{
+            "type": "RGB24_APercent",
+            "value": ["#555555", 100]
+            },
+        "border_color":{
+            "type": "RGB24_APercent",
+            "value": ["#aaaaaa", 100]
+            },
+        "border_thickness":{
+            "type": "float",
+            "value": 1
+            }, 
+        "corner_radius":{
+            "type": "vec4",
+            "value": [0.5, 0.5, 0.5, 0.5]
+            }
+        },
+
+    "filled_rounded_box":{
+        "background_color":{
+            "type": "RGB24_APercent",
+            "value": ["#555555", 100]
+            },
+         "corner_radius":{
+            "type": "vec4",
+            "value": [0.5, 0.5, 0.5, 0.5]
+            }
+        },
+
+    "rounded_box_borders":{
+        "border_color":{
+            "type": "RGB24_APercent",
+            "value": ["#aaaaaa", 100]
+            },
+        "border_thickness":{
+            "type": "float",
+            "value": 1
+            },
+        "corner_radius":{
+            "type": "vec4",
+            "value": [0.5, 0.5, 0.5, 0.5]
+            }
+        },
+    
+    "text":{
+        "text_color":{
+            "type": "RGB24_APercent",
+            "value": ["#ffffff", 100]
+            },
+        "text_size":{
+            "type": "float",
+            "value": 1
+            },
+        "text":{
+            "type":"string"
+            },
+        "forced_text_width":{
+            "type": "float"
+            }
+        },
+    
+    "input_text":{
+        "text_color":{
+            "type": "RGB24_APercent",
+            "value": ["#ffffff", 100]
+            },
+        "cursor_color":{
+            "type": "RGB24_APercent",
+            "value": ["#dddddd", 100]
+            },
+        "text_size":{
+            "type": "float",
+            "value": 1
+            },
+        "text":{
+            "type":"string"
+            },
+        "forced_text_width":{
+            "type": "float"
+            }
+        },
+    
+    "texture":{
+        "texture":{
+                "type": "string"
+            },
+        "texture_color":{
+            "type": "RGB24_APercent",
+            "value": ["#ffffff", 100]
+            },
+        "texture_size":{
+                "type": "vec2",
+                "value":[1, 1]
+            },
+        "texture_scale":{
+                "type": "vec2",
+                "value":[1, 1]
+            }
+        },
+
+    "texture_toggle_fading":{
+        "textures":{
+                "type": "list"
+            },
+        "texture_color":{
+            "type": "RGB24_APercent",
+            "value": ["#ffffff", 100]
+            },
+        "texture_size":{
+                "type": "vec2",
+                "value":[1, 1]
+            },
+        "texture_scale":{
+                "type": "vec2",
+                "value":[1, 1]
+            },
+        "toggle_idx":{
+            "type": "int",
+            "value": 0
+            },
+        "fading_delay":{
+            "type": "float",
+            "value": 0.2
+            }
+        },
+    
+    "text_toggle_fading":{
+        "text_color":{
+            "type": "RGB24_APercent",
+            "value": ["#ffffff", 100]
+            },
+        "text_size":{
+            "type": "float",
+            "value": 1
+            },
+        "texts":{
+            "type":"list"
+            },
+        "forced_text_width":{
+            "type": "float"
+            },
+        "toggle_idx":{
+            "type": "int",
+            "value": 0
+            },
+        "fading_delay":{
+            "type": "float",
+            "value": 0.2
+            }
+        },
+    
+    "circle":{
+        "background_color":{
+            "type": "RGB24_APercent",
+            "value": ["#28282c", 100]
+            },
+        "border_color":{
+            "type": "RGB24_APercent",
+            "value": ["#ffffff", 100]
+            },
+        "border_thickness":{
+            "type": "float",
+            "value": 2
+            },
+        "radius":{
+            "type": "float",
+            "value": 10
+            }
+    }
+}

@@ -420,213 +420,10 @@ class HarfangUISkin:
 
 		cls.keyboard_cursor_color = hg.Color(1, 1, 1, 0.75)
 
-		cls.properties = cls.load_properties("properties.json")
+		cls.properties = cls.load_json_script("properties.json")
 
-		cls.primitives = {
-			"box":{
-				"background_color":{
-					"type": "RGB24_APercent",
-					"value": ["#555555", 100]
-					},
-				"border_color":{
-					"type": "RGB24_APercent",
-					"value": ["#aaaaaa", 100]
-					},
-				"border_thickness":{
-					"type": "float",
-					"value": 1
-					}
-				},
-			
-			"filled_box":{
-				"background_color":{
-					"type": "RGB24_APercent",
-					"value": ["#555555", 100]
-					}
-				},
-			
-			"box_borders":{
-				"border_color":{
-					"type": "RGB24_APercent",
-					"value": ["#aaaaaa", 100]
-					},
-				"border_thickness":{
-					"type": "float",
-					"value": 1
-					}
-				},
-			
-			"rounded_box":{
-				"background_color":{
-					"type": "RGB24_APercent",
-					"value": ["#555555", 100]
-					},
-				"border_color":{
-					"type": "RGB24_APercent",
-					"value": ["#aaaaaa", 100]
-					},
-				"border_thickness":{
-					"type": "float",
-					"value": 1
-					}, 
-				"corner_radius":{
-					"type": "vec4",
-					"value": [0.5, 0.5, 0.5, 0.5]
-					}
-				},
+		cls.primitives = cls.load_json_script("primitives.json")
 
-			"filled_rounded_box":{
-				"background_color":{
-					"type": "RGB24_APercent",
-					"value": ["#555555", 100]
-					},
-				 "corner_radius":{
-					"type": "vec4",
-					"value": [0.5, 0.5, 0.5, 0.5]
-					}
-				},
-
-			"rounded_box_borders":{
-				"border_color":{
-					"type": "RGB24_APercent",
-					"value": ["#aaaaaa", 100]
-					},
-				"border_thickness":{
-					"type": "float",
-					"value": 1
-					},
-				"corner_radius":{
-					"type": "vec4",
-					"value": [0.5, 0.5, 0.5, 0.5]
-					}
-				},
-			
-			"text":{
-				"text_color":{
-					"type": "RGB24_APercent",
-					"value": ["#ffffff", 100]
-					},
-				"text_size":{
-					"type": "float",
-					"value": 1
-					},
-				"text":{
-					"type":"string"
-					},
-				"forced_text_width":{
-					"type": float
-					}
-				},
-			
-			"input_text":{
-				"text_color":{
-					"type": "RGB24_APercent",
-					"value": ["#ffffff", 100]
-					},
-				"cursor_color":{
-					"type": "RGB24_APercent",
-					"value": ["#dddddd", 100]
-					},
-				"text_size":{
-					"type": "float",
-					"value": 1
-					},
-				"text":{
-					"type":"string"
-					},
-				"forced_text_width":{
-					"type": float
-					}
-				},
-			
-			"texture":{
-				"texture":{
-						"type": "string"
-					},
-				"texture_color":{
-					"type": "RGB24_APercent",
-					"value": ["#ffffff", 100]
-					},
-				"texture_size":{
-						"type": "vec2",
-						"value":[1, 1]
-					},
-				"texture_scale":{
-						"type": "vec2",
-						"value":[1, 1]
-					}
-				},
-
-			"texture_toggle_fading":{
-				"textures":{
-						"type": "list"
-					},
-				"texture_color":{
-					"type": "RGB24_APercent",
-					"value": ["#ffffff", 100]
-					},
-				"texture_size":{
-						"type": "vec2",
-						"value":[1, 1]
-					},
-				"texture_scale":{
-						"type": "vec2",
-						"value":[1, 1]
-					},
-				"toggle_idx":{
-					"type": "int",
-					"value": 0
-					},
-				"fading_delay":{
-					"type": "float",
-					"value": 0.2
-					}
-				},
-			
-			"text_toggle_fading":{
-				"text_color":{
-					"type": "RGB24_APercent",
-					"value": ["#ffffff", 100]
-					},
-				"text_size":{
-					"type": "float",
-					"value": 1
-					},
-				"texts":{
-					"type":"list"
-					},
-				"forced_text_width":{
-					"type": float
-					},
-				"toggle_idx":{
-					"type": "int",
-					"value": 0
-					},
-				"fading_delay":{
-					"type": "float",
-					"value": 0.2
-					}
-				},
-			
-			"circle":{
-				"background_color":{
-					"type": "RGB24_APercent",
-					"value": ["#28282c", 100]
-					},
-				"border_color":{
-					"type": "RGB24_APercent",
-					"value": ["#ffffff", 100]
-					},
-				"border_thickness":{
-					"type": "float",
-					"value": 2
-					},
-				"radius":{
-					"type": "float",
-					"value": 10
-					}
-			}
-		}
 		# Références par noms pour le script, à transformer en références par indices dans une list globale d'objets.
 		cls.components = {
 			"window_background": {
@@ -807,15 +604,16 @@ class HarfangUISkin:
 		return v
 	
 	@classmethod
-	def load_properties(cls, file_name):
+	def load_json_script(cls, file_name):
 		file = open(file_name, "r")
 		json_script = file.read()
 		file.close()
 		if json_script != "":
 			return json.loads(json_script)
 		else:
-			print("HGUISkin - ERROR - Can't open properties json file !")
+			print("HGUISkin - ERROR - Can't open json file ! - " + file_name)
 		return None
+	
 
 	@classmethod
 	def convert_properties_color_to_RGBA32(cls):
