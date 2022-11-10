@@ -471,25 +471,26 @@ class HarfangUISkin:
 				},
 
 			"basic_label": {
-				"primitives": [{"type": "text", "name": "basic_label.1"}]
+				"primitives": [{"type": "text", "name": "basic_label.1", "text_color": ["#fdfdfd",100]}],
+				"margins": [10, 10, 0]
 				},
 			"input_box": {
-				"primitives": [{"type": "filled_rounded_box", "name": "input_box.1"}, {"type": "input_text", "name": "input_box.2"}],
+				"primitives": [{"type": "filled_rounded_box", "name": "input_box.1", "corner_radius": [1, 1, 1, 1]}, {"type": "input_text", "name": "input_box.2"}],
 				"align": HarfangUI.HGUIAF_LEFT
 				},
 			"button_component": {
-				"primitives":[{"type": "filled_rounded_box", "name": "button_component.1"}, {"type": "text", "name": "button_component.2"}],
+				"primitives":[{"type": "filled_rounded_box", "name": "button_component.1", "corner_radius": [1, 1, 1, 1]}, {"type": "text", "name": "button_component.2"}],
 				"margins": [15, 5, 0]
 				},
 			"image_button": {
-				"primitives": [{"type": "filled_rounded_box", "name": "image_button.1"}, {"type": "texture", "name": "image_button.2"}, {"type": "text", "name": "image_button.3"}],
+				"primitives": [{"type": "filled_rounded_box", "name": "image_button.1", "corner_radius": [1, 1, 1, 1]}, {"type": "texture", "name": "image_button.2"}, {"type": "text", "name": "image_button.3"}],
 				"margins": [50, 15, 0], "space_size": 20
 				},
 			"check_box":{
 				"primitives": [{"type": "filled_rounded_box", "name": "check_box.1"}, {"type": "texture","name": "check_box.2", "texture": "hgui_textures/Icon_Check.png", "texture_size": [15, 15]}],
 				},
 			"toggle_image": {
-				"primitives": [{"type": "filled_rounded_box", "name": "toggle_image.box"}, {"type": "texture_toggle_fading", "name": "toggle_image.textures"}]
+				"primitives": [{"type": "filled_rounded_box", "name": "toggle_image.box", "corner_radius": [1, 1, 1, 1]}, {"type": "texture_toggle_fading", "name": "toggle_image.textures"}]
 				},
 			"scrollbar": {
 				"primitives":[{"type": "filled_box", "name": "scrollbar.background","background_color": ["#141414", 100]}, {"type": "filled_rounded_box", "name": "scrollbar.bar", "corner_radius": [1, 1, 1, 1]}],
@@ -500,7 +501,7 @@ class HarfangUISkin:
 				"margins": [5, 5, 0],
 				},
 			"toggle_button_box": {
-				"primitives": [{"type": "filled_rounded_box", "name": "toggle_button.box"}, {"type": "text_toggle_fading", "name": "toggle_button.texts"}],
+				"primitives": [{"type": "filled_rounded_box", "name": "toggle_button.box", "corner_radius": [1, 1, 1, 1]}, {"type": "text_toggle_fading", "name": "toggle_button.texts"}],
 				"margins": [15, 10, 0], "forced_text_width": None
 				},
 			"text_select":{
@@ -508,7 +509,7 @@ class HarfangUISkin:
 				"align": HarfangUI.HGUIAF_LEFT
 			},
 			"list_box": {
-				"primitives": [{"type": "filled_rounded_box", "name": "list_box.background"}],
+				"primitives": [{"type": "filled_rounded_box", "name": "list_box.background", "background_color":["#2a2a2e", 100], "corner_radius": [0.2, 0.2, 0.2, 0.2]}],
 				"selected_idx": 0, "items_list": [], "line_space_factor": 1, "margins": [5, 5, 0], "forced_text_width": None
 			},
 			"sliderbar": {
@@ -544,26 +545,23 @@ class HarfangUISkin:
 						},
 			
 			"input_text": {"components": ["basic_label", "input_box"],
-							"properties": ["basic_label_margins", "basic_label_text_color",
-										"input_text_margins", "input_box_color", "widget_rounded_radius", "input_text_color"]
+							"properties": ["input_text_margins", "input_box_color", "input_text_color"]
 							},
 	
 			"button": {"components": ["button_component"],
-						"properties": ["button_box_color", "button_text_color", "widget_rounded_radius"]
+						"properties": ["button_box_color", "button_text_color"]
 						},
 	
 			"image_button": {"components": ["image_button"],
-						"properties": ["button_box_color", "widget_rounded_radius", "image_button_label_color"]
+						"properties": ["button_box_color", "image_button_label_color"]
 						},
 	
 			"check_box": {"components": ["basic_label", "check_box"],
-						"properties": ["basic_label_margins", "basic_label_text_color",
-									"checkbox_margins", "checkbox_rounded_radius", "checkbox_box_color", "check_color"],
+						"properties": ["checkbox_margins", "checkbox_rounded_radius", "checkbox_box_color", "check_color"],
 						},
 			
 			"toggle_image_button": {"components": ["basic_label", "toggle_image"],
-									"properties": ["basic_label_margins", "basic_label_text_color",
-												"toggle_image_margins","widget_rounded_radius", "toggle_image_box_color"]
+									"properties": ["toggle_image_margins", "toggle_image_box_color"]
 									},
 			
 			"scrollbar": {"components": ["scrollbar"],
@@ -576,23 +574,22 @@ class HarfangUISkin:
 								]
 						},
 			
-			"toggle_button": {"components": ["basic_label", "toggle_button_box"], "toggle_idx": 0, "toggle_texts": None,
-								"properties": ["basic_label_margins", "basic_label_text_color", "button_box_color", "button_text_color", "widget_rounded_radius"]
+			"toggle_button": {"components": ["basic_label", "toggle_button_box"], "current_idx": 0, "items_list": None,
+								"properties": ["button_box_color", "button_text_color"]
 								},
 			
 			"text_select":{"components": ["text_select"],
 							"properties": ["text_select_box_color", "text_select_margins", "text_select_text_color"]},
 
 			"list_box": {"components": ["basic_label", "list_box"], "current_idx": 0,
-						"properties": ["basic_label_margins", "basic_label_text_color","listbox_background_color", "listbox_rounded_radius"]
-						},
+						"properties": ["list_box_color"]},
 			
 			"slider_float": {"components":["basic_label", "sliderbar", "number_display"],
-						"properties":["basic_label_margins", "basic_label_text_color", "sliderbar_bg_color", "sliderbar_color", "sliderbar_plot_radius", "sliderbar_thickness"],
+						"properties":["sliderbar_bg_color", "sliderbar_color", "sliderbar_plot_radius", "sliderbar_thickness"],
 						"forced_number_width": 40, "number_size": 1},
 
-			"dropdown": {"components": ["basic_label", "toggle_button_box", "list_box"], "current_idx":0, "items_list": None,
-						"properties": ["basic_label_margins", "basic_label_text_color", "button_box_color", "button_text_color", "button_text_margins", "widget_rounded_radius"]}
+			"dropdown": {"components": ["basic_label", "list_box", "toggle_button_box"], "current_idx":0, "items_list": None,
+						"properties": ["dropdown_box_color", "button_text_color", "button_text_margins","dropdown_line_space_factor", "dropdown_opacity", "dropdown_offset"]}
 			
 		}
 
@@ -1057,6 +1054,7 @@ class HarfangUI:
 			"scale": hg.Vec3(1, 1, 1),	#Global scale, used to compute final render matrix
 			"offset": hg.Vec3(0, 0, 0),
 			"size": hg.Vec3(0, 0, 0),
+			"opacity": 1,
 			"cursor_auto": True	#False if cursor is not incremented in object rendering
 		}
 
@@ -1178,7 +1176,6 @@ class HarfangUI:
 			"cursor_start_line": hg.Vec3(0, 0, 0),
 			"default_cursor_start_line": hg.Vec3(0, 0, 0),
 			"space_size": 10, #distance between components
-			"opacity": 1,
 			"max_size": hg.Vec3(0, 0, 0), # Used for window worksapce computation (scroll bars...)
 			"components": {},
 			"components_render_order": [],
@@ -2269,16 +2266,17 @@ class HarfangUI:
 					widget["current_idx"] = n
 				ts = cls.widgets[ts_id]
 				widget["sub_widgets"].append(ts)
-				ts["opacity"] = widget["opacity"]
-				ts["position"].x = widget["position"].x + component["position"].x + component["margins"].x
-				ts["position"].y = widget["position"].y + component["position"].y + component["margins"].y + y_pos
+				ts["opacity"] = component["opacity"]
+				ts["position"].x = widget["position"].x + component["position"].x + component["offset"].x + component["margins"].x
+				ts["position"].y = widget["position"].y + component["position"].y + component["offset"].y + component["margins"].y + y_pos
 				ts["position"].z = widget["position"].z
+				y_height = y_pos + ts["size"].y
 				y_pos += ts["size"].y * component["line_space_factor"]
 				max_width = max(max_width, ts["size"].x)
 				n += 1
 			component["items_list"] = widget["items_list"]
 			component["size"].x = max_width
-			component["size"].y = y_pos
+			component["size"].y = y_height
 			component["selected_idx"] = widget["current_idx"]
 
 		if component["type"] == "sliderbar":
@@ -2390,10 +2388,10 @@ class HarfangUI:
 
 					elif primitive["type"] == "text_toggle_fading":
 						
-						if "toggle_texts" in widget:
+						if "items_list" in widget:
 							# Texts setups only appends if texts changes:
-							if widget["toggle_texts"] != primitive["texts"]:
-								primitive["texts"] = widget["toggle_texts"]
+							if widget["items_list"] != primitive["texts"]:
+								primitive["texts"] = widget["items_list"]
 								# Setup texts sizes and deltas:
 								primitive["texts_sizes"] = []
 								primitive["texts_d"] = []
@@ -2408,7 +2406,7 @@ class HarfangUI:
 									primitive["forced_text_width"] = mx
 
 						if primitive["texts"] is not None:
-							cls.set_toggle_idx(primitive, primitive["texts"], widget["toggle_idx"])
+							cls.set_toggle_idx(primitive, primitive["texts"], widget["current_idx"])
 							#Compute deltas and t:
 							primitive["t"] = (cls.timestamp - primitive["toggle_t0"]) / hg.time_from_sec_f(primitive["fading_delay"])
 							txt_size0 = primitive["texts_sizes"][primitive["toggle_idx"]] # HarfangGUIRenderer.compute_text_size(cls.current_font_id, primitive["texts"][primitive["toggle_idx"]])
@@ -2593,6 +2591,7 @@ class HarfangUI:
 	def update_widget(cls, widget):
 		mn = hg.Vec3(inf, inf, inf)
 		mx = hg.Vec3(-inf, -inf, -inf)
+		flag_compute_widget_size = False
 		cp = widget["cursor"]
 		if widget["classe"] == "widgets_container":
 			cp.x, cp.y, cp.z = 0, 0, 0
@@ -2611,32 +2610,36 @@ class HarfangUI:
 			if component["hidden"]:
 				continue
 			cls.update_component(widget, component)
+			
 			if component["cursor_auto"]:
 				#Component positionning:
-
 				cls.record_stack(cp, component["position"], component["size"], widget["stacking"], widget["align"])
 				
-			#update widget size:
-			cmnx = component["position"].x if component["offset"].x > 0 else component["position"].x + component["offset"].x
-			cmny = component["position"].y if component["offset"].y > 0 else component["position"].y + component["offset"].y
-			cmnz = component["position"].z if component["offset"].z > 0 else component["position"].z + component["offset"].z
-			mn.x = min(mn.x, cmnx)
-			mn.y = min(mn.y, cmny)
-			mn.z = min(mn.z, cmnz)
-			cmx = component["position"] + component["offset"] + component["size"]
-			mx.x = max(mx.x,cmx.x)
-			mx.y = max(mx.y,cmx.y)
-			mx.z = max(mx.z,cmx.z)
+				#update widget size:
+				cmnx = component["position"].x if component["offset"].x > 0 else component["position"].x + component["offset"].x
+				cmny = component["position"].y if component["offset"].y > 0 else component["position"].y + component["offset"].y
+				cmnz = component["position"].z if component["offset"].z > 0 else component["position"].z + component["offset"].z
+				mn.x = min(mn.x, cmnx)
+				mn.y = min(mn.y, cmny)
+				mn.z = min(mn.z, cmnz)
+				cmx = component["position"] + component["offset"] + component["size"]
+				mx.x = max(mx.x,cmx.x)
+				mx.y = max(mx.y,cmx.y)
+				mx.z = max(mx.z,cmx.z)
+				flag_compute_widget_size = True
 			
-			#Cursor stacking:
-			if component["cursor_auto"]:
+				#Cursor stacking:
 				if widget["stacking"] == cls.HGUI_STACK_HORIZONTAL:
 					cp.x += component["size"].x + component["offset"].x + widget["space_size"]
 				elif widget["stacking"] == cls.HGUI_STACK_VERTICAL:
 					cp.y += component["size"].y + component["offset"].y + widget["space_size"]
 
-		ws = mx - mn
-		widget["size"] = ws
+		if flag_compute_widget_size:
+			ws = mx - mn
+			widget["size"] = ws
+		else:
+			# !!! Widget size must have been set by widget !!!
+			ws = widget["size"]
 		
 		if widget["classe"] != "widgets_container":
 			# Alignment
@@ -2731,13 +2734,13 @@ class HarfangUI:
 		#call AFTER build_widgets_container_2Dcontainers()
 		#widget states already updated
 		scroll_pos = widgets_container["scroll_position"]
-		opacity = hg.Color(1, 1, 1, widgets_container["opacity"])
+
 		for component in widgets_container["components_render_order"]:
 
 			cpos = component["position"] + component["offset"] + scroll_pos
 
 			if component["overlay"] and not component["hidden"]:
-				cls.build_primitives(widgets_container, component, matrix, cpos, opacity)
+				cls.build_primitives(widgets_container, component, matrix, cpos, widgets_container["opacity"] * component["opacity"])
 
 	@classmethod
 	def build_widget(cls, widgets_container, matrix, widget):
@@ -2745,7 +2748,8 @@ class HarfangUI:
 		HarfangGUISceneGraph.set_container_display_list(widgets_container["name"])
 		cls.update_widget_states(widget)
 		
-		opacity = hg.Color(1, 1, 1, 1 if widget["classe"] == "widgets_container" else widget["opacity"])
+		#widget_opacity = 1 if widget["classe"] == "widgets_container" else widget["opacity"]
+		widget_opacity = widget["opacity"]
 
 		if "scroll_position" in widget:
 			scroll_pos = widget["scroll_position"]
@@ -2756,13 +2760,15 @@ class HarfangUI:
 			if component["hidden"] or component["overlay"]:
 				continue
 			cpos = component["position"] + component["offset"] + scroll_pos
-			cls.build_primitives(widget, component, matrix, cpos, opacity)
+			cls.build_primitives(widget, component, matrix, cpos, widget_opacity * component["opacity"])
 			
 
 	@classmethod
-	def build_primitives(cls, widget, component, matrix, cpos, opacity):
+	def build_primitives(cls, widget, component, matrix, cpos, component_opacity):
+		opacity = hg.Color(1, 1, 1, 1)
 		for primitive in component["primitives"]:
 			if not primitive["hidden"]:
+				opacity.a = component_opacity * primitive["opacity"]
 				ppos = cpos + primitive["position"]
 				primitive_id = primitive["type"]
 				if primitive_id == "box":
@@ -3500,13 +3506,13 @@ class HarfangUI:
 		if "forced_text_width" in args:
 			obj_toggle_comp["forced_text_width"] = args["forced_text_width"]
 		
-		widget["toggle_texts"] = texts
+		widget["items_list"] = texts
 		
 		mouse_click = False
 		if "mouse_click" in cls.current_signals and widget_id in cls.current_signals["mouse_click"]:
 			mouse_click = True
 			current_idx = (current_idx + 1) % len(texts)
-		widget["toggle_idx"] = current_idx
+		widget["current_idx"] = current_idx
 		widget["position"] = cls.get_cursor_position()
 		cls.update_widget(widget)
 		cls.update_cursor(widget)
@@ -3674,12 +3680,13 @@ class HarfangUI:
 
 	@classmethod
 	def dropdown(cls, widget_id, current_idx:int, items_list:list, **args):
-		widget = cls.get_widget(widget_id, args)
+		widget = cls.get_widget("dropdown", widget_id, args)
 		widget["position"] = cls.get_cursor_position()
 		obj_label = widget["objects_dict"]["basic_label.1"]
-		
 		obj_toggle_comp = widget["components"]["toggle_button_box"]
 		obj_list_box = widget["components"]["list_box"]
+		obj_list_box["cursor_auto"] = False
+		obj_list_box["position"].x , obj_list_box["position"].y = obj_toggle_comp["position"].x , obj_toggle_comp["position"].y + obj_toggle_comp["size"].y
 
 		obj_label["text"] = cls.get_label_from_id(widget_id)
 		if "show_label" in args:
@@ -3694,5 +3701,28 @@ class HarfangUI:
 		
 		widget["items_list"] = items_list
 		
-		return False, current_idx
+		#if "MLB_pressed" in cls.current_signals and not widget["name"] in cls.current_signals["MLB_pressed"]:
+
+		if "drop_down" in widget["states"]:
+			if widget["child_mouse_click"]:
+				cls.set_widget_state(widget, "drop_up")
+
+		if "mouse_click" in cls.current_signals and widget_id in cls.current_signals["mouse_click"]:
+			if "drop_down" in widget["states"]:
+				cls.set_widget_state(widget, "drop_up")
+			else:
+				cls.set_widget_state(widget,"drop_down")
+			#current_idx = (current_idx + 1) % len(items_list)
+		widget["current_idx"] = current_idx
+		widget["position"] = cls.get_cursor_position()
+
+		if obj_list_box["line_space_factor"] < 1e-5:
+			obj_list_box["hidden"] = True
+		else:
+			obj_list_box["hidden"] = False
+		widget["child_mouse_click"] = False
+
+		cls.update_widget(widget)
+		cls.update_cursor(widget)
+		return widget["child_mouse_click"], widget["current_idx"]
 

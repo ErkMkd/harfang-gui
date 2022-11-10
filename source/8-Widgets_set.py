@@ -35,7 +35,8 @@ current_rib = 0
 toggle_image_idx = 0
 toggle_btn_idx = 0
 current_item = 0
-items_list = ["Item 0", "Item 1", "Item 2sdfzrzerzrzrzerzrzerzzerlklkzjelrkjzlerkj", "Item 3"]
+current_item_dd = 0
+items_list = ["Item 0", "Item 1", "Item 2 long label", "Item 3"]
 slider_float_value = 0
 slider_float_value_1 = 0
 slider_float_value_2 = 0
@@ -99,8 +100,7 @@ while not hg.ReadKeyboard().Key(hg.K_Escape) and hg.IsWindowOpen(window):
             f, toggle_btn_idx = hgui.toggle_button("Texts_toggle", lbl_list, toggle_btn_idx)
             hgui.same_line()
             f, toggle_btn_idx = hgui.toggle_button("Texts_toggle##label", lbl_list, toggle_btn_idx, show_label=True)
-           
-            #f, cb = hgui.text_select("txt_select", "Item 0", cb)
+            
             
             f, current_item = hgui.list_box("My listbox", current_item, items_list, show_label = False,  forced_text_width = 150)
            
@@ -108,7 +108,9 @@ while not hg.ReadKeyboard().Key(hg.K_Escape) and hg.IsWindowOpen(window):
             f, current_item = hgui.list_box("My listbox##2", current_item, items_list, forced_text_width = 150)
             
            
-            #f, current_item = hgui.dropdown("Dropdown", current_item, ["Item 0", "Item 1", "Item 2", "Item 3"])
+            f, current_item_dd = hgui.dropdown("Dropdown##nolabel", current_item_dd, items_list, show_label = False, forced_text_width = 150)
+            hgui.same_line()
+            f, current_item_dd = hgui.dropdown("Dropdown", current_item_dd, items_list, forced_text_width = 150)
             
 
             if hgui.begin_widget_group_2D("Select texture"): #, cpos, hg.Vec2(373, 190)):
