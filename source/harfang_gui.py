@@ -2674,6 +2674,8 @@ class HarfangUI:
 
 	@classmethod
 	def build_widgets_container(cls, matrix, widgets_container):
+		
+		# Compute matrix & build container background:
 		if widgets_container["type"] != "Main_container":
 			HarfangGUISceneGraph.add_widgets_container(widgets_container)
 			widgets_container["local_matrix"] =  hg.TransformationMat4(widgets_container["position"] + widgets_container["offset"], widgets_container["rotation"], widgets_container["scale"])		
@@ -2681,8 +2683,16 @@ class HarfangUI:
 
 			cls.build_widget(widgets_container, hg.Mat4.Identity, widgets_container)
 		
-		#containers_2D_children = []
-		for widget in widgets_container["children_order"]:
+		# If widgets_container is a Main Container, children are only containers, so "align children" list is used.
+		children_list = widgets_container["children_order"]
+		if widgets_container["type"] == "Main_container":
+			if widgets_container["name"] == "MainContainer3D":
+				children_list = reversed(widgets_container["containers_3D_children_align_order"])
+			elif widgets_container["name"] == "MainContainer2D":
+				children_list = reversed(widgets_container["containers_2D_children_align_order"])
+
+		# Recusrsive build if widget is a container
+		for widget in children_list:
 			if widget["classe"] =="widgets_container":
 				cls.build_widgets_container(widgets_container["world_matrix"], widget)
 				#if widget["flag_2D"]:
@@ -2699,6 +2709,7 @@ class HarfangUI:
 			if not widgets_container["flag_invisible"]:
 				cls.build_widgets_container_overlays(widgets_container, hg.Mat4.Identity)
 
+		# Update framebuffer size:
 		fb_size = widgets_container["frame_buffer_size"]
 
 		fb_size_x = int(widgets_container["size"].x)
@@ -2713,6 +2724,7 @@ class HarfangUI:
 				widgets_container["depth_texture"] = None
 			fb_size.x, fb_size.y = fb_size_x, fb_size_y
 
+		# Create Frame buffer:
 		if widgets_container["frame_buffer"] is None:
 			
 			widgets_container["color_texture"] = hg.CreateTexture(int(fb_size.x * HarfangGUIRenderer.frame_buffers_scale), int(fb_size.y* HarfangGUIRenderer.frame_buffers_scale), widgets_container["name"] + "_ctex", hg.TF_RenderTarget | hg.TF_SamplerMinAnisotropic, hg.TF_RGBA8)
@@ -2886,7 +2898,6 @@ class HarfangUI:
 						cls.set_container_align_front(parent)
 			for i, w in enumerate(parent["containers_2D_children_align_order"]):
 				if w == container:
-					
 					if i > 0:
 						parent["containers_2D_children_align_order"].pop(i)
 						parent["containers_2D_children_align_order"].insert(0, container)
@@ -3114,15 +3125,20 @@ class HarfangUI:
 
 	@classmethod
 	def start_edit_string(cls, widget, primitive):
+		#primitive["display_text_start_idx"] = 0
+		#cls.kb_cursor_pos = 0
 		primitive["text_mem"] = primitive["text"]
 		cls.set_widget_state(widget, "edit")
 		cls.set_ui_state(cls.UI_STATE_WIDGET_KEYBOARD_FOCUS) # Get keyboard control
 		cls.set_widget_state(widget,"idle")
 		cls.kb_cursor_pos = len(primitive["text"])
+		widget["flag_update_rest_size"] = True
 		cls.ascii_connect = hg.OnTextInput.Connect(on_key_press)
 
 	@classmethod
 	def stop_edit_string(cls, widget, primitive):
+		cls.kb_cursor_pos = 0
+		primitive["display_text_start_idx"] = 0
 		cls.set_widget_state(widget, "no_edit")
 		cls.set_ui_state(cls.UI_STATE_MAIN)	# Resume keyboard control to ui
 		primitive["text"] = primitive["text_mem"]
@@ -3177,6 +3193,7 @@ class HarfangUI:
 	def update_edit_string(cls, widget, primitive_id):
 		
 		primitive = widget["objects_dict"][primitive_id]
+
 		flag_move_cursor = False
 		
 		if not "edit" in widget["states"]:
@@ -3192,8 +3209,9 @@ class HarfangUI:
 				str_l = len(primitive["text"])
 
 				flag_k_down = False
+				exclude_repeat_keys = [hg.K_LShift, hg.K_RShift, hg.K_LCtrl, hg.K_RCtrl]
 				for k in range(hg.K_Last):
-					if cls.keyboard.Down(k):
+					if k not in exclude_repeat_keys and cls.keyboard.Down(k):
 						if cls.kb_cursor_current_key_down != k:
 							cls.kb_cursor_down_t0 = cls.timestamp
 							cls.kb_cursor_current_key_down = k
@@ -3233,6 +3251,8 @@ class HarfangUI:
 						cls.set_widget_state(widget, "no_edit")
 						cls.set_ui_state(cls.UI_STATE_MAIN)	# Resume keyboard control to ui
 						widget["flag_update_rest_size"] = True
+						cls.kb_cursor_pos = 0
+						primitive["display_text_start_idx"] = 0
 						cls.clip_input_text(widget, primitive)
 						return True #String changed
 					else:
